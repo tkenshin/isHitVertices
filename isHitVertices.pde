@@ -4,9 +4,9 @@ PVector p1, p2;
 float x, y, r;
 final int index = 2;
 
-boolean isHitEndPoint(float px, float py, float ex, float ey, float er) {
-  float dx = ex - px;
-  float dy = ey - py;
+boolean isHitEndPoint(PVector p, float ex, float ey, float er) {
+  float dx = ex - p.x;
+  float dy = ey - p.y;
 
   return (dx*dx) + (dy*dy) < er*er;
 }
@@ -16,12 +16,11 @@ void setup() {
 
   p1 = new PVector(height / 3, 20);
   p2 = new PVector(height / 3, width - 20);
-  
+
   p = new PVector[] {
     p1, p2
-    
+
   };
-  
 }
 
 void draw() {
@@ -39,11 +38,10 @@ void draw() {
   ellipse(p2.x, p2.y, 10, 10);
 
   line(p1.x, p1.y, p2.x, p2.y);
-  
-  for(int i = 0; i < index; i++) {
-    if (isHitEndPoint(p[i].x, p[i].y, x, y, r)) {
-    println("vertices[" + i + "] hit");
-  }
-    
+
+  for (int i = 0; i < index; i++) {
+    if (isHitEndPoint(p[i], x, y, r)) {
+      println("vertices[" + i + "] hit");
+    }
   }
 }
